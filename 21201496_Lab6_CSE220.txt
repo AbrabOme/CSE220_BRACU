@@ -1,0 +1,244 @@
+Task1(a)
+-------------------
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+fac = factorial(6)
+print(fac)
+
+Task1(b)
+------------------
+def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+fib = fibonacci(4)
+print(fib)
+
+Task1(c)
+---------------
+def print_array(lis,index):
+    if index == len(lis):
+        return
+    else:
+        print(lis[index])
+        print_array(lis,index+1)
+lis = [1,2,3,4,5,7]
+print_array(lis,0)
+
+Task1(d)
+-----------------
+def powerN (base,n):
+    if n == 0:
+        return 1
+    else:
+
+        return base*powerN(base,n-1)
+
+po = powerN(3,2)
+print(po)
+
+Task2(a)
+-------------------
+def deci_to_bin(n):
+    if n == 0:
+        return 0
+    else:
+        return deci_to_bin(n//2)* 10 + (n%2)
+dec = deci_to_bin(11)
+print(dec)
+
+Task2(b)
+---------------------
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+class linklist:
+    def __init__(self, array):
+        self.head = None
+        tail = None
+        for n in array:
+            new_node = Node(n)
+            if self.head == None:
+                self.head = new_node
+                tail = new_node
+            else:
+                tail.next = new_node
+                tail = new_node
+
+    def sum_add(self, head):
+        if head is None:
+            return 0
+        else:
+            return head.value + self.sum_add(head.next)
+
+    def sum(self):
+        return self.sum_add(self.head)
+
+
+array = [1, 2, 3, 4, 5, 6, 7]
+linked = linklist(array)
+print(linked.sum())
+
+Task2(c)
+----------------------
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+class linklist:
+    def __init__(self, array):
+        self.head = None
+        tail = None
+        for x in array:
+            new_node = Node(x)
+            if self.head == None:
+                self.head = new_node
+                tail = new_node
+            else:
+                tail.next = new_node
+                tail = new_node
+         
+    def reverse(self,head):
+        if head.next is None:
+            print(head.value)
+        else:
+            self.reverse(head.next)
+            print(head.value)
+            
+    def print(self):
+        return self.reverse(self.head)
+
+array = [1, 2, 3, 4, 5, 6, 7]
+listlinked = linklist(array)
+listlinked.print()
+
+Task3
+-------------------
+def hocBuilder(height):
+    if height == 0:
+        return 0
+    elif height == 1:
+        return 8
+    else:
+        return 5 + hocBuilder(height-1)
+n = int(input("Enter the height: ")) 
+hocBuilder(n)
+
+Task4(a)
+---------------------
+
+def iterate(n):
+    if n==0:
+        return
+    iterate(n-1)
+    dowork(n)
+    print()
+    
+def dowork(k, j=1):
+    if j>k:
+        return
+    print(j, end=" ")
+    dowork(k,j+1)
+iterate(5)
+
+Task4(b)
+---------------------
+def pattern(n):
+    if n == 0:
+        return 0
+    else:
+        pattern(n-1)
+        print(n, end="")
+
+
+def print_pattern(n, i):
+    if n == 0:
+        return 0
+    else:
+        space(n-1)
+        pattern((i)-n+1)
+        print()
+        print_pattern(n-1, i)
+
+
+def space(n):
+    if n == 0:
+        return 0
+    else:
+        space(n - 1)
+        print("", end=" ")
+
+print_pattern(5,5)
+
+Task5
+-----------------
+class FinalIQ:
+    def printit(self, arr,idx):
+        if idx<len(arr):
+            profit=self.calcprofit(array[idx])
+            print("investment:", str(arr[idx])+ "; Profit:",float(profit))
+            self.printit(arr, idx+1)
+            
+    def calcprofit(self,inv):
+        
+        if inv<=25000:
+            return 0
+        if  inv <= 100000:
+            return 45+ self.calcprofit(inv-1000) 
+        elif inv >100000:       
+            return 80+ self.calcprofit(inv-1000) 
+                
+array=[25000,100000,250000,350000]
+f = FinalIQ()
+f.printit(array,0)
+
+
+Ungrade Task
+--------------------
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+class linklist:
+    def __init__(self ):
+        self.head = None
+        self.tail = None
+
+def flattenList(given_list, h):
+    if len(given_list) == 0:
+        return h.head
+    temp = given_list.pop(0)
+    
+    if type(temp) == int:
+        
+        n=Node(temp)
+        
+        if h.head==None:
+            h.head=n
+            h.tail=h.head
+        else:
+            h.tail.next=n
+            h.tail=n
+    else:
+        flattenList(temp,h)
+    return flattenList(given_list,h)
+lst=linklist()
+ans=flattenList([1, [2, [3, [4], 5], 6], 7, 8, [9, [[10, 11], 12], 13], 14, [15, [16, [17]]]],lst)
+while ans!=None:
+    print(ans.value, end=" ")
+    ans=ans.next
+
